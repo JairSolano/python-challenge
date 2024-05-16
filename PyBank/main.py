@@ -5,7 +5,7 @@ import csv
 
 #locate where the csv file is.
 budget_data_csv = os.path.join("Resources", "budget_data.csv")
-
+analysis_txt = os.path.join("Analysis", "Financial_Analysis.txt")
 #create list for the data
 months = []
 profit_loss = []
@@ -70,18 +70,17 @@ with open(cleaned_csv) as csv_file:
                     greatest_increase_month = months[i + 1]
 
 #print Financial Analysis
-print("")
-print("Financial Analysis")
-print("")
-print("--------------------------------------------------")
-print("")
-print(f'Total Months: {(int(len(months)))}')
-print("")
-print(f'Total: ${(total)}')
-print("")
-print(f'Average Change: ${round(average_change, 2)}')
-print("")
-print(f'Greatest Increase in Profits: {greatest_increase_month} (${int(greatest_increase)})')
-print("")
-print(f'Greatest Decrease in Profits: {greatest_decrease_month} (${int(greatest_decrease)})')
 
+analysis_data = (
+                f"Financial Analysis\n"
+                f"--------------------------------------------------\n"                 
+                f'Total Months: {(int(len(months)))}\n' 
+                f'Total: ${(total)}\n' 
+                f'Average Change: ${round(average_change, 2)}\n'
+                f'Greatest Increase in Profits: {greatest_increase_month} (${int(greatest_increase)})\n'
+                f'Greatest Decrease in Profits: {greatest_decrease_month} (${int(greatest_decrease)})\n'
+                )
+print(analysis_data)
+
+with open(analysis_txt, 'w') as txt_file:
+     txt_file.write(analysis_data)

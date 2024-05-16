@@ -6,7 +6,7 @@ import statistics
 
 #locate where the csv file is.
 election_data_csv = os.path.join("Resources", "election_data.csv")
-
+analysis_txt = os.path.join("Analysis", "Election_Results.txt")
 #create list for the data
 ballot_id = []
 county = []
@@ -71,22 +71,22 @@ rounded_raymon = round(raymon_vote_percent, 3)
 from statistics import mode
 winner = mode(candidates)
 
+results_data = (
+                f"Election Results\n"
+                f"-----------------------------------------\n"
+                f'Total Votes: {total_votes}'
+                f"-----------------------------------------\n"
+                f'Charles Casper Stockham: {rounded_charles}%  ({charles_vote})\n'
+                f'Diana Degette: {rounded_diana}%  ({diana_vote})\n'
+                f'Raymon Anthony Doane: {rounded_raymon}%  ({raymon_vote})\n'
+                f"-----------------------------------------\n"
+                f'Winner: {winner}\n'
+                )
+
+print(results_data)
+
+with open(analysis_txt, 'w') as txt_file:
+     txt_file.write(results_data)
+
+
 #print results
-print("")
-print("Election Results")
-print("")
-print("-----------------------------------------")
-print("")
-print(f'Total Votes: {total_votes}')
-print("")
-print("-----------------------------------------")
-print("")
-print(f'Charles Casper Stockham: {rounded_charles}%  ({charles_vote})')
-print("")
-print(f'Diana Degette: {rounded_diana}%  ({diana_vote})')
-print("")
-print(f'Raymon Anthony Doane: {rounded_raymon}%  ({raymon_vote})')
-print("")
-print("-----------------------------------------")
-print("")
-print(f'Winner: {winner}')            
